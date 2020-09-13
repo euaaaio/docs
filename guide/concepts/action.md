@@ -45,10 +45,14 @@ Logux Server response with `logux/processed` when it received and processed the 
 ### `logux/undo`
 
 ```js
-{ type: 'logux/undo', id: '1560954012838 380:Y7bysd:O0ETfc 0', reason: 'error' }
+{
+  type: 'logux/undo',
+  id: '1560954012838 380:Y7bysd:O0ETfc 0',
+  action: { type: 'users/add' },
+  reason: 'error' }
 ```
 
-This action asks clients to revert action. `action.id` will be equal to `meta.id` of reverted action. Logux Server sends this action on any error during action processing. In this case, `logux/processed` will not be sent.
+This action asks clients to revert action. `id` is equal to `meta.id` of reverted action, and `action` is the original reverted action. Logux Server sends this action on any error during action processing. In this case, `logux/processed` will not be sent.
 
 There are 4 standard `reason` values in the action:
 
